@@ -1,10 +1,10 @@
 # importing stuff
 import numpy as np
 import tensorflow as tf
-from initializer import *
+import initializer
 
 # defining fuctions
-def layer_definier(x):
+def layer_definer(x):
 	# layer 1
 	W_conv1 = initializer.weight_variable([5,5,1,32])
 	b_conv1 = initializer.bias_variable([32])
@@ -19,10 +19,10 @@ def layer_definier(x):
 	b_conv2 = initializer.bias_variable([64])
 
 	h_conv2 = tf.nn.relu(initializer.conv2d(h_pool1, W_conv2) + b_conv2)
-	hpool2 = initializer.max_pool_2x2(h_conv2)
+	h_pool2 = initializer.max_pool_2x2(h_conv2)
 
 	# layer 3
-	W_fc1 = initializer.weigh_variable([7*7*64, 1024])
+	W_fc1 = initializer.weight_variable([7*7*64, 1024])
 	b_fc1 = initializer.bias_variable([1024])
 	
 	h_pool2_flat = tf.reshape(h_pool2, [-1, 7*7*64])
@@ -37,3 +37,5 @@ def layer_definier(x):
 	b_fc2 = initializer.bias_variable([10])
 	
 	y_conv = tf.matmul(h_fc1_drop, W_fc2) + b_fc2
+	
+	return y_conv, keep_prob
