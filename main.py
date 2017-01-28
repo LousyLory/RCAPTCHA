@@ -45,4 +45,4 @@ for i in range(2000):
 
 #print("test accuracy %g"%accuracy.eval(feed_dict={
 #    x: mnist.test.images, y_: mnist.test.labels, keep_prob: 1.0}))
-file_writer = tf.summary.FileWriter('/srv/kingkong/archan/logs/', see.graph)
+file_writer = tf.summary.FileWriter('logs/', sess.graph)
